@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "advance4": {
+      "main": "src/advance4/main.mo",
+      "type": "motoko"
+    },
+    "advance4_assets": {
+      "dependencies": [
+        "advance4"
+      ],
+      "frontend": {
+        "entrypoint": "src/advance4_assets/src/index.html"
+      },
+      "source": [
+        "src/advance4_assets/assets",
+        "dist/advance4_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.8.4",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
