@@ -1,0 +1,45 @@
+// Version: 1.0.0
+type AssocList<K, V> = List<(K, V)>;
+type AssocList__1<K, V> = AssocList<K, V>;
+type Branch<K, V> = {left : Trie<K, V>; right : Trie<K, V>; size : Nat};
+type Hash = Nat32;
+type Key<K> = {hash : Hash; key : K};
+type Leaf<K, V> = {keyvals : AssocList__1<Key<K>, V>; size : Nat};
+type List<T> = ?(T, List<T>);
+type Operations =
+  {
+    #addRestriction;
+    #create;
+    #delete;
+    #install;
+    #removeRestriction;
+    #start;
+    #stop
+  };
+type Proposal =
+  {
+    approvers : List<Principal>;
+    canisterID : ?Principal;
+    done : Bool;
+    isApprover : Bool;
+    operation : Operations;
+    proposalsID : Nat;
+    proposer : Principal;
+    refusers : List<Principal>;
+    wasmCode : ?Blob;
+    wasmCodeHash : [Nat8]
+  };
+type Trie<K, V> = {#branch : Branch<K, V>; #empty; #leaf : Leaf<K, V>};
+actor {
+  stable var canisterRestrictionSet :
+    {#branch : Branch<Principal, ()>; #empty; #leaf : Leaf<Principal, ()>};
+  stable var canisterSet :
+    {#branch : Branch<Principal, ()>; #empty; #leaf : Leaf<Principal, ()>};
+  stable var foundationSet :
+    {#branch : Branch<Principal, ()>; #empty; #leaf : Leaf<Principal, ()>};
+  stable var proposals :
+    {#branch : Branch<Nat, Proposal>; #empty; #leaf : Leaf<Nat, Proposal>};
+  stable var proposalsID : Nat;
+  stable var threshold : Nat;
+  stable var total : Nat
+};

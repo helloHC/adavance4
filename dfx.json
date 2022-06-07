@@ -21,13 +21,13 @@
   "defaults": {
     "build": {
       "args": "",
-      "packtool": ""
+      "packtool": "vessel sources"
     }
   },
-  "dfx": "0.8.4",
+  "dfx": "0.9.3",
   "networks": {
     "local": {
-      "bind": "127.0.0.1:8000",
+      "bind": "127.0.0.1:8668",
       "type": "ephemeral"
     }
   },
